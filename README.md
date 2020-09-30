@@ -1,11 +1,6 @@
 # kraken-fix
 
-A quick fix for the bioconda install of [Kraken 2].
-
-Introduction
-============
-
-Kraken 2 is a taxonomic sequence classifier that assigns taxonomic labels to DNA sequences.  Kraken examines the k-mers within a query sequence and uses the information within those k-mers to query a database. That database maps k-mers to the lowest common ancestor (LCA) of all genomes known to contain a given k-mer. If you use Kraken 2 in your own work, please cite either the [Kraken 2 paper] and/or the original [Kraken paper] as appropriate.  Thank you!
+A quick fix for the bioconda install of [Kraken 2]. Kraken 2 is a taxonomic sequence classifier that assigns taxonomic labels to DNA sequences by examining the k-mers within a query sequence to query a database. That database maps k-mers to the lowest common ancestor (LCA) of all genomes known to contain a given k-mer. If you use Kraken 2 in your own work, please cite either the [Kraken 2 paper] and/or the original [Kraken paper] as appropriate.
 
 [Kraken 2]: https://ccb.jhu.edu/software/kraken2/
 [Kraken paper]: https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-3-r46
@@ -36,3 +31,10 @@ One hack to replace faulty scripts is to clone the master branch of Kraken 2 dir
     git clone https://github.com/DerrickWood/kraken2.git
     cp $HOME/kraken2/scripts/* $HOME/.conda/envs/kraken2/libexec
     cp $HOME/kraken2/scripts/kraken2{,-build,-inspect} \ $HOME/.conda/envs/kraken2/bin
+    
+The other hack is to use `kraken2-build --db $DBNAME --threads $N` to attempt a database build. This repository also contains a `manual_accession2taxid.sh` bash shell script that will circumvent a few known bugs in the `rsync_from_ncbi.pl` and `download_taxonomy.sh` accessory scripts to Kraken 2. To run the script, download from source and run the following in the Terminal:
+
+    chmod u+x manual_accession2taxid.sh
+    ./manual_accession2taxid.sh
+
+You should then be able to proceed with all other custom Kraken 2 database build steps outlined in DerrickWood/kraken2/docs/MANUAL.html.
