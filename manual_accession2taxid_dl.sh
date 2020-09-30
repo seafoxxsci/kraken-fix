@@ -15,8 +15,3 @@ then
 wget ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz > nucl_gb.accession2taxid.gz
 wget ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/nucl_wgs.accession2taxid.gz > nucl_wgs.accession2taxid.gz
 touch accmap.dlflag
-
-### 2. Another, potentially problematic solution: "Clone the master branch of Kraken 2 and replace the faulty conda scripts"
-git clone https://github.com/DerrickWood/kraken2.git
-cp $HOME/kraken2/scripts/* $HOME/.conda/envs/kraken2/libexec
-cp $HOME/kraken2/scripts/kraken2{,-build,-inspect> $HOME/.conda/envs/kraken2/bin
