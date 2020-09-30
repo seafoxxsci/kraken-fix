@@ -6,9 +6,7 @@ A quick fix for the bioconda install of [Kraken 2]. Kraken 2 is a taxonomic sequ
 [Kraken paper]: https://genomebiology.biomedcentral.com/articles/10.1186/gb-2014-15-3-r46
 [Kraken 2 paper]: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1891-0
 
-
-Installation
-============
+## Installation
 
 To begin using Kraken 2, you will first need to install it. Kraken 2 consists of two main scripts (`kraken2` and `kraken2-build`) along with several programs and smaller scripts. Unlike the source installation from [Kraken 2], the conda-build of Kraken 2 installs most programs and smaller scripts into the `libexec` folder and the main scripts into the `bin` folder. 
 
