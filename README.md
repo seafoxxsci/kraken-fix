@@ -26,6 +26,8 @@ If you are using Anaconda3, the installation can be found at the following $HOME
 
     /Users/$USER/opt/anaconda3/env/kraken2
 
+## How to fix the conda install of Kraken 2
+
 One hack to replace faulty scripts is to clone the master branch of Kraken 2 directly from Github and replace identically-named scripts in the conda-build by running the following. Replace `$HOME` in the following commands with the appropriate directory above:
 
     git clone https://github.com/DerrickWood/kraken2.git
