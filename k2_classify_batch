@@ -1,0 +1,32 @@
+#!/bin/bash
+
+module load miniconda3
+source activate kraken2
+export DBNAME=/work/idoerg/db/k2standard2
+
+### Classify deinterleaved .fastq files using the kraken 2 database $DBNAME...
+### Assumes you have 3 folders containing $DIR (raw files), $REV (reverse reads), and $FWD (forward reads):
+
+export DIR=/work/idoerg/db/oxymice/oxymice_fastq_gz
+export REV=/work/idoerg/db/oxymice/reverse_reads
+export FWD=/work/idoerg/db/oxymice/forward_reads
+
+for i in $DIR/AMP*.fastq; do
+    file=$(basename "$i")
+    base=$(basename "$file" .fastq)
+    fwd_reads="${base}_R1.fastq"
+    rev_reads="${base}_R2.fastq"
+
+    classified="${base}_classified"
+    unclassified="${base}_unclassified"
+
+    echo "Classifying sequences in $file with standard kraken2 database..."
+    kraken2 --db $DBNAME \
+        --threads 30 \
+        --report $DIR/$base-report.txt \
+        --output $DIR/$base-output.txt \
+        --report-zero-counts --use-names --paired \
+        --unclassified-out $DIR/$unclassified#.fastq \
+        --classified-out $DIR/$classified#.fastq \
+        $FWD/$fwd_reads $REV/$rev_reads
+done
